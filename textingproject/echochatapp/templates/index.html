@@ -6,7 +6,7 @@
     <img text-align class="logo" src="static/images/echochatlogo.png" alt="echochatlogo">
     {% if user.is_authenticated %}
     Hi {{ user.username }}!
-    <p><a href="{% url 'password_change' %}">Password Change</a></p>
+    <p><a href="{% url 'password_change' %}">Change Password</a></p>
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit">Log Out</button>
