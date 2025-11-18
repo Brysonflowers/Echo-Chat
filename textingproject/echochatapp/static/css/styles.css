@@ -54,7 +54,11 @@ a {
     margin: 10px 0;
 }
 
-
+.logo{
+  display: block;
+  margin: auto;
+  width: 45%;
+}
 
 
 

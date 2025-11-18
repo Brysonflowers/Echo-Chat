@@ -3,7 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <img src="echochatlogo.png" alt="echochatlogo">
+    <img text-align class="logo" src="static/images/echochatlogo.png" alt="echochatlogo">
     {% if user.is_authenticated %}
     Hi {{ user.username }}!
     <p><a href="{% url 'password_change' %}">Password Change</a></p>
