@@ -4,6 +4,7 @@
 
 {% block content %}
     <img text-align class="logo" src="static/images/echochatlogo.png" alt="echochatlogo">
+    <h2>Welcome to EchoChat</h2>
     {% if user.is_authenticated %}
     Hi {{ user.username }}!
     <p><a href="{% url 'password_change' %}">Change Password</a></p>
