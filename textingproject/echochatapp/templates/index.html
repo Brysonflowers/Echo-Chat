@@ -3,6 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+    <img text-align class="logo" src="static/images/echochatlogo.png" alt="echochatlogo">
     {% if user.is_authenticated %}
     Hi {{ user.username }}!
     <p><a href="{% url 'password_change' %}">Change Password</a></p>
@@ -11,8 +12,9 @@
         <button type="submit">Log Out</button>
     </form>
     {% else %}
-    <p>You are not logged in</p>
-    <p><a href="{% url 'password_reset' %}">Password Reset</a></p>
-    <a href="{% url 'login' %}">Log In</a>
+    <h2>You are not logged in</h2>
+    <p><a class="links" href="{% url 'login' %}">Log In</a></p>
+    <p><a class="links" href="{% url 'signup' %}">Sign Up</a></p>
+    <p><a class="links" href="{% url 'password_reset' %}">Password Reset</a></p>
     {% endif %}
 {% endblock %}
