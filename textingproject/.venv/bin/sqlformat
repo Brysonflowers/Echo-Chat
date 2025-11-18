@@ -1,8 +1,9 @@
-#!/Users/danielapadilla/Desktop/Django/Echo-Chat/textingproject/.venv/bin/python3
-# -*- coding: utf-8 -*-
-import re
+#!/bin/sh
+'''exec' "/Users/daniela/Desktop/Dani Padilla/Unit 5 - Django/Echo-Chat/textingproject/.venv/bin/python3.14" "$0" "$@"
+' '''
 import sys
 from sqlparse.__main__ import main
 if __name__ == '__main__':
-    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    if sys.argv[0].endswith('.exe'):
+        sys.argv[0] = sys.argv[0][:-4]
     sys.exit(main())

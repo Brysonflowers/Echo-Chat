@@ -11,7 +11,18 @@ h2 {
     text-align: center;
 }
 
-form {
+.login {
+    max-width: 40%;
+    margin: 35px auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #8ca3b7;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup {
     max-width: 40%;
     margin: 35px auto;
     padding: 30px;
