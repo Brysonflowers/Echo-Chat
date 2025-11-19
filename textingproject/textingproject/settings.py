@@ -25,12 +25,19 @@ SECRET_KEY = 'django-insecure-5@ecm2h%+6!u75f2u-69y-mt8@k7o$0a_p2u$e024a(p_&mzn2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',  # Localhost
+    'localhost',
+    '192.168.1.127',  
+    '*', # WARNING: Use this only for temporary testing on a private network
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,7 +75,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'textingproject.wsgi.application'
+#WSGI_APPLICATION = 'textingproject.wsgi.application'
+
+ASGI_APPLICATION = 'textingproject.asgi.application'
 
 
 # Database
