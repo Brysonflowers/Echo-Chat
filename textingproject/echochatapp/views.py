@@ -11,6 +11,13 @@ class SignUpView(CreateView):
     success_url = reverse_lazy("login")
     template_name = "registration/sign_up.html"
 
+    def get_form(self, *args, **kwargs):
+        form = super().get_form(*args, **kwargs)
+        for field in form.fields.values():
+            field.help_text = None
+        return form
+
 # Create your views here.
 def index(request: HttpRequest) -> HttpResponse:
     return render(request, "index.html")
+

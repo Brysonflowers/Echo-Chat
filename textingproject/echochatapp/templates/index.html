@@ -3,15 +3,15 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <img text-align class="logo" src="static/images/echochatlogo.png" alt="echochatlogo">
     {% if user.is_authenticated %}
-    Hi {{ user.username }}!
+    <h2>Hi {{ user.username }}!</h2>
     <p><a href="{% url 'password_change' %}">Change Password</a></p>
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit">Log Out</button>
     </form>
     {% else %}
+    <img text-align class="logo" src="static/images/echochatlogo.png" alt="echochatlogo">
     <div class="all-links">
         <div><a class="links" href="{% url 'login' %}">Log In</a></div>
         <div><a class="links" href="{% url 'signup' %}">Sign Up</a></div>
