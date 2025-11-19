@@ -17,6 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 })
 
-function test () {
+function home_page () {
     document.location.href = "http://127.0.0.1:8000"
 }
