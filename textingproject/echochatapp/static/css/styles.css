@@ -6,6 +6,16 @@ body {
     color:#4e4c54;
 }
 
+.dark-mode {
+    background-color: #121212;
+    color: #e0dabf;
+}
+
+#dark-mode {
+    color: lightblue;
+    background-color: rgb(66, 87, 66);
+}
+
 h2 {
     color: #e0dabf;
     text-align: center;
@@ -28,14 +38,22 @@ h2 {
 }
 
 .login-page {
-    max-width: 40%;
+    width: 30%;
     margin: 35px auto;
-    padding: 30px;
+    padding: 50px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background: #8ca3b7;
+    background: rgb(66, 87, 66);
+    color: lightblue;
+
+}
+
+.form-login {
+    margin-bottom: 5%;
     display: flex;
     flex-direction: column;
+    gap: 15px;
+
 }
 
 .signup-page {
@@ -44,9 +62,18 @@ h2 {
     padding: 30px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background: #8ca3b7;
+    background: rgb(66, 87, 66);
+    color: lightblue;
     display: flex;
     flex-direction: column;
+}
+
+.form-signup {
+    margin-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
 }
 
 button {
@@ -75,6 +102,8 @@ a {
   margin: auto;
   width: 30%;
 }
+
+
 
 
 
