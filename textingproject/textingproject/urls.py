@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('echochatapp/', include('echochatapp.urls')),
     path("accounts/", include('django.contrib.auth.urls')),
-    path('', index, name = 'home')
+    path('', index, name = 'home'),
+    path('chat',thecurrentchatviewer,name='chat')
 ]
