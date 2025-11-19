@@ -41,3 +41,6 @@ def create_group(request):
         form = CreateGroupForm()
 
     return render(request, "create_group.html", {"form": form})
+
+def test_view(request: HttpRequest) -> HttpResponse:
+    return render(request, 'test.html')

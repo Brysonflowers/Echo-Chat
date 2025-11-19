@@ -84,6 +84,14 @@ button {
     border-radius: 5px;
 }
 
+.button-style {
+    background: #84bcdc;
+    padding: 10px 15px;
+    border: none;
+    color: #4e4c54;
+    border-radius: 5px;
+}
+
 button:hover {
     background: #6ea8d6;
     cursor: pointer;
