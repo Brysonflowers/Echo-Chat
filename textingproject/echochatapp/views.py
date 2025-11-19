@@ -24,3 +24,6 @@ def index(request: HttpRequest) -> HttpResponse:
 def thecurrentchatviewer(request: HttpRequest) -> HttpResponse:
     messages = ChatMessage.objects.order_by('timestamp').all()[:10]
     return render(request, "chattextpage.html", {'messages': messages})
+
+def test_view(request: HttpRequest) -> HttpResponse:
+    return render(request, 'test.html')
