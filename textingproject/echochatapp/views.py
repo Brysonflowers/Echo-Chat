@@ -21,7 +21,6 @@ class SignUpView(CreateView):
             field.help_text = None
         return form
 
-# Create your views here.
 def index(request: HttpRequest) -> HttpResponse:
     return render(request, "index.html")
 
