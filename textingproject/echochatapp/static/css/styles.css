@@ -6,31 +6,74 @@ body {
     color:#4e4c54;
 }
 
+.dark-mode {
+    background-color: #121212;
+    color: #e0dabf;
+}
+
+#dark-mode {
+    color: lightblue;
+    background-color: rgb(66, 87, 66);
+}
+
 h2 {
     color: #e0dabf;
     text-align: center;
 }
 
-.login {
+.all-links {
+    text-align: center;
+    width: 35%;
+    margin: 0 auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.links {
+    background-color: rgb(66, 87, 66);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    color: lightblue;
+    font-size: 130%;
+}
+
+.login-page {
+    width: 30%;
+    margin: 35px auto;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgb(66, 87, 66);
+    color: lightblue;
+
+}
+
+.form-login {
+    margin-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.signup-page {
     max-width: 40%;
     margin: 35px auto;
     padding: 30px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background: #8ca3b7;
+    background: rgb(66, 87, 66);
+    color: lightblue;
     display: flex;
     flex-direction: column;
 }
 
-.signup {
-    max-width: 40%;
-    margin: 35px auto;
-    padding: 30px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: #8ca3b7;
+.form-signup {
+    margin-bottom: 5%;
     display: flex;
     flex-direction: column;
+    gap: 15px;
+
 }
 
 button {
@@ -57,8 +100,10 @@ a {
 .logo{
   display: block;
   margin: auto;
-  width: 45%;
+  width: 30%;
 }
+
+
 
 
 
