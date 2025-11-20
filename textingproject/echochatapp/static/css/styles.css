@@ -138,8 +138,8 @@ ul li a:hover {
     background-color: #192709;  
 }
 
-.dark-mode .signup-page{
-    background-color: #192709;  
+.dark-mode .nav-bar ul {
+    background-color: rgb(66, 87, 66);
 }
 
 
