@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const toggle = document.getElementById("dark-toggle");
 
+    // Load saved mode
     if (localStorage.getItem("dark") === "true") {
         document.body.classList.add("dark-mode");
         toggle.textContent = "Light Mode";
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dark = document.body.classList.contains("dark-mode");
         localStorage.setItem("dark", dark);
 
-        toggle.textContent = dark ? "Dark Mode" : "Light Mode";
+        toggle.textContent = dark ? "Light Mode" : "Dark Mode";
     });
 })
 
