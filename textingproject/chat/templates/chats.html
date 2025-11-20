@@ -1,0 +1,18 @@
+{% extends "chat/Base.html" %}
+{% load static %}
+
+{% block content %}
+    <div id="chat-log" style="height: 400px; overflow-y: scroll;">
+        {% for message in messages %}
+            <b>{{ message.user.username }}</b>: {{ message.message }}<br>
+        {% endfor %}
+    </div>
+
+    <form id="chat-form">
+        <input id="chat-message-input" type="text" size="100"><br>
+        <input id="chat-message-submit" type="button" value="Send">
+    </form>
+
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+
