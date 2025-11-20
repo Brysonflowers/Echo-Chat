@@ -9,6 +9,14 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import *
 
+
+# Source - https://stackoverflow.com/a
+# Posted by Brandon Taylor, modified by community. See post 'Timeline' for change history
+# Retrieved 2025-11-19, License - CC BY-SA 4.0
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+
 # Create your views here.
 class SignUpView(CreateView):
     form_class = UserCreationForm
@@ -29,7 +37,7 @@ def thecurrentchatviewer(request: HttpRequest) -> HttpResponse:
     return render(request, "chattextpage.html", {'messages': messages})
 
 @login_required
-def create_group(request):
+def create_group(request: HttpRequest):
     if request.method == "POST":
         form = CreateGroupForm(request.POST)
         if form.is_valid():
@@ -44,3 +52,8 @@ def create_group(request):
 
 def test_view(request: HttpRequest) -> HttpResponse:
     return render(request, 'test.html')
+
+def private_chats_view(request: HttpRequest) -> HttpResponse:
+    users = User.objects.all()
+
+    return render(request, 'private chat.html', {'users': users})
