@@ -124,9 +124,42 @@ a {
 }
 
 .dark-mode .signup-page{
-    background-color: #192709;  
+    background-color: #192709;
 }
 
+.main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 
+.user_groups {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgb(66, 87, 66);
+    color: lightblue; 
+}
 
+.users {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgb(66, 87, 66);
+    color: lightblue; 
+}
 
+.search {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgb(66, 87, 66);
+    color: lightblue; 
+}
+
+.private_chat_heading3_styles {
+    justify-self: center;
+}

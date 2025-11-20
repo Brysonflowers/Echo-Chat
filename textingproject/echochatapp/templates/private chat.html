@@ -14,7 +14,11 @@
         </div>
         <div class="search">
             <h3 class="private_chat_heading3_styles">Search for User</h3>
-            <p>ahaahh</p>
+            <form action="">
+                {% csrf_token %}
+                {{name_form}}
+                <button type="submit">Search</button>
+            </form>
         </div>        
     </div>
 
