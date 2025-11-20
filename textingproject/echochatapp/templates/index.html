@@ -15,6 +15,30 @@
         </ul>
     </nav>
     <h2>Hi {{ user.username }}!</h2>
+    <form action="{% url 'password_change' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Change Password</button>
+    </form>
+    <br>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Log Out</button>
+    </form>
+    <br>
+    <form action="{% url 'chat' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Chat</button>
+    </form>
+    <br>
+        <form action="{% url 'test' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Test</button>
+        </form>
+    <br>
+    <form action="{% url 'private_chats' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Private Chats</button>
+    </form>
     {% else %}
     <img text-align class="logo" src="static/images/echochatlogo.png" alt="echochatlogo">
     <div class="all-links">

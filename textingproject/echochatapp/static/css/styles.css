@@ -115,23 +115,8 @@ a {
 
 .nav-bar ul li a {
   display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-ul li a:hover {
-  background-color: #111111;
-}
-
-.dark-mode{
-    background: rgb(66, 87, 66);  
-}
-
-.dark-mode .links{
-    background-color: #192709;  
-    color: lightblue;
+  margin: auto;
+  width: 30%;
 }
 
 .dark-mode .login-page{
@@ -140,8 +125,39 @@ ul li a:hover {
 
 .dark-mode .signup-page{
     background-color: #192709;  
+}.main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
+.user_groups {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgb(66, 87, 66);
+    color: lightblue; 
+}
 
+.users {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgb(66, 87, 66);
+    color: lightblue; 
+}
 
+.search {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgb(66, 87, 66);
+    color: lightblue; 
+}
 
+.private_chat_heading3_styles {
+    justify-self: center;
+}
