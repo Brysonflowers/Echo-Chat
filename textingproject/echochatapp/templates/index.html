@@ -20,9 +20,14 @@
         <button type="submit">Chat</button>
     </form>
     <br>
-    <form action="{% url 'test' %}" method="post">
+        <form action="{% url 'test' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Test</button>
+        </form>
+    <br>
+    <form action="{% url 'private_chats' %}" method="post">
         {% csrf_token %}
-        <button type="submit">Test</button>
+        <button type="submit">Private Chats</button>
     </form>
     {% else %}
     <img text-align class="logo" src="static/images/echochatlogo.png" alt="echochatlogo">
