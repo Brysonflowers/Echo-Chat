@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <h2>Create Group Chat</h2>
 
-<form method="post">
+<form method="POST">
     {% csrf_token %}
     {{ form }}
     <button type="submit">Create Group</button>

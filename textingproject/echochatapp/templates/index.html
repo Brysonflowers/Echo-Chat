@@ -4,6 +4,16 @@
 
 {% block content %}
     {% if user.is_authenticated %}
+    <nav class="nav-bar">
+        <ul>
+            <li><a href="{% url 'password_change' %}">Change Password</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'chat' %}"><button>Chat</button></a></li>
+            <li><a href="{% url 'test' %}"><button>Test</button></a></li>
+            <li><a><form action="{% url 'logout' %}" method="post">{% csrf_token %}<button>Logout</button></form></a></li>
+            <li><a><button id="dark-toggle">Dark Mode</button></a></li>
+        </ul>
+    </nav>
     <h2>Hi {{ user.username }}!</h2>
     <form action="{% url 'password_change' %}" method="post">
         {% csrf_token %}
