@@ -115,31 +115,16 @@ a {
 
 .nav-bar ul li a {
   display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-ul li a:hover {
-  background-color: #111111;
-}
-
-.dark-mode{
-    background: rgb(66, 87, 66);  
-}
-
-.dark-mode .links{
-    background-color: #192709;  
-    color: lightblue;
+  margin: auto;
+  width: 30%;
 }
 
 .dark-mode .login-page{
     background-color: #192709;  
 }
 
-.dark-mode .nav-bar ul {
-    background-color: rgb(66, 87, 66);
+.dark-mode .signup-page{
+    background-color: #192709;  
 }
 
 
