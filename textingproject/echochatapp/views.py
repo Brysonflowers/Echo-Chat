@@ -55,5 +55,5 @@ def test_view(request: HttpRequest) -> HttpResponse:
 
 def private_chats_view(request: HttpRequest) -> HttpResponse:
     users = User.objects.all()
-
-    return render(request, 'private chat.html', {'users': users})
+    name_form = SearchUserForm()
+    return render(request, 'private chat.html', {'users': users, 'name_form': name_form})

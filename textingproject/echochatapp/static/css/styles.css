@@ -124,8 +124,10 @@ a {
 }
 
 .dark-mode .signup-page{
-    background-color: #192709;  
-}.main-content {
+    background-color: #192709;
+}
+
+.main-content {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
