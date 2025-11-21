@@ -8,8 +8,9 @@ from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import *
+import logging
 
-
+logging.basicConfig(level=logging.INFO)
 # Source - https://stackoverflow.com/a
 # Posted by Brandon Taylor, modified by community. See post 'Timeline' for change history
 # Retrieved 2025-11-19, License - CC BY-SA 4.0
@@ -56,4 +57,13 @@ def test_view(request: HttpRequest) -> HttpResponse:
 def private_chats_view(request: HttpRequest) -> HttpResponse:
     users = User.objects.all()
     name_form = SearchUserForm()
-    return render(request, 'private chat.html', {'users': users, 'name_form': name_form})
+    user = ''
+    empty_dict = {}
+    if request.POST != empty_dict:
+        user = request.POST['name']
+        try:
+            user = users.get(username = user)
+        except:
+            user = 'none'
+
+    return render(request, 'private chat.html', {'users': users, 'name_form': name_form, 'user': user})
