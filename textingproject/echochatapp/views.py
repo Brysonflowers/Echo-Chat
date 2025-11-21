@@ -55,7 +55,7 @@ def test_view(request: HttpRequest) -> HttpResponse:
 def private_chats_view(request: HttpRequest) -> HttpResponse:
     users = User.objects.all()
     name_form = SearchUserForm()
-    user = ''
+    user = 'no name form'
     empty_dict = {}
     if request.POST != empty_dict:
         user = request.POST['name']
@@ -65,3 +65,7 @@ def private_chats_view(request: HttpRequest) -> HttpResponse:
             user = 'none'
 
     return render(request, 'private chat.html', {'users': users, 'name_form': name_form, 'user': user})
+
+def chatting_page_view(request: HttpRequest) -> HttpResponse:
+
+    return render(request, 'chatting page.html')
