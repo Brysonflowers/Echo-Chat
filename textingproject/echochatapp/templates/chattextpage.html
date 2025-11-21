@@ -1,118 +1,19 @@
-<wrapper class="block max-w-2xl mx-auto my-10 px-6">
-    <div id="chat_window" class="h-[45rem] flex flex-col bg-gray-800 rounded-2xl shadow-2xl relative p-1">
-        <div class="flex justify-center text-emerald-400 bg-gray-800 p-2 sticky top-0 z-10">
-            <span id="online-count" class="pr-1"></span>online
-        </div>
-        <div id='chat_container' class="overflow-y-auto grow">
-            <ul id='chat_messages' class="flex flex-col justify-end gap-2 p-4">
-                {% for message in messages %}
-                    {% if message.user == request.user %}
-                        <li class="flex justify-end mb-4">
-                            <div class="bg-green-200 rounded-l-lg rounded-tr-lg p-4 max-w-[75%]">
-                                <span>{{ message.message }}</span>
-                            </div>
-                            <div class="flex items-end">
-                                <svg height="13" width="8" >
-                                    <path fill="#bbf7d0" d="M6.3,10.4C1.5,8.7,0.9,5.5,0,0.2L0,13l5.2,0C7,13,9.6,11.5,6.3,10.4z"/>
-                                </svg>
-                            </div>
-                        </li>
-                    {% else %}
-                        <li>
-                            <div class="flex justify-start">
-                                <div class="flex items-end" >
-                                    <svg height="13" width="8" >
-                                        <path fill="white" d="M2.8,13L8,13L8,0.2C7.1,5.5,6.5,8.7,1.7,10.4C-1.6,11.5,1,13,2.8,13z"></path>
-                                    </svg>
-                                </div>
-                                <div class="bg-white p-4 max-w-[75%] rounded-r-lg rounded-tl-lg">
-                                    <span>{{ message.message }}</span>
-                                </div>  
-                            </div>
-                            <div class="text-sm font-light py-1 ml-10">
-                                <span class="text-white">{{ message.user.username }}</span> 
-                            </div>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="sticky bottom-0 z-10 p-2 bg-gray-800">
-            <div class="flex items-center rounded-xl px-2 py-2">
-                <form id="chat_message_form" method='POST' class="w-full">
-                    <input id="chat_message_input" type="text" name="message" placeholder="Add message ..." maxlength="150">
-                </form>
-            </div>
-        </div>
-    </div>
-</wrapper>
+{% extends 'base.html' %}
 
-<script>
-    window.onload = function() {
-        const chatContainer = document.getElementById('chat_container');
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-    };
+{% block title %}Echo Chat - {{ room_name }}{% endblock %}
+<!-- This is there so that tile says echo chat -->
 
-    const chatSocket = new WebSocket(
-        'ws://'
-        + window.location.host
-        + '/ws/chat/'
-    );
-
-    chatSocket.onmessage = function(e) {
-        const data = JSON.parse(e.data);
-        const chatMessages = document.getElementById('chat_messages');
-        const messageElement = document.createElement('li');
-        const username = data.username;
-        const message = data.message;
-
-        if (username === "{{ request.user.username }}") {
-            messageElement.innerHTML = `
-                <li class="flex justify-end mb-4">
-                    <div class="bg-green-200 rounded-l-lg rounded-tr-lg p-4 max-w-[75%]">
-                        <span>${message}</span>
-                    </div>
-                    <div class="flex items-end">
-                        <svg height="13" width="8" >
-                            <path fill="#bbf7d0" d="M6.3,10.4C1.5,8.7,0.9,5.5,0,0.2L0,13l5.2,0C7,13,9.6,11.5,6.3,10.4z"/>
-                        </svg>
-                    </div>
-                </li>
-            `;
-        } else {
-            messageElement.innerHTML = `
-                <li>
-                    <div class="flex justify-start">
-                        <div class="flex items-end" >
-                            <svg height="13" width="8" >
-                                <path fill="white" d="M2.8,13L8,13L8,0.2C7.1,5.5,6.5,8.7,1.7,10.4C-1.6,11.5,1,13,2.8,13z"></path>
-                            </svg>
-                        </div>
-                        <div class="bg-white p-4 max-w-[75%] rounded-r-lg rounded-tl-lg">
-                            <span>${message}</span>
-                        </div>  
-                    </div>
-                    <div class="text-sm font-light py-1 ml-10">
-                        <span class="text-white">${username}</span> 
-                    </div>
-                </li>
-            `;
-        }
-        chatMessages.appendChild(messageElement);
-        chat_container.scrollTop = chat_container.scrollHeight;
-    };
-
-    chatSocket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
-    };
-
-    document.getElementById('chat_message_form').onsubmit = function(e) {
-        e.preventDefault();
-        const messageInputDom = document.getElementById('chat_message_input');
-        const message = messageInputDom.value;
-        chatSocket.send(JSON.stringify({
-            'message': message
-        }));
-        messageInputDom.value = '';
-    };
-</script>
+{% block content %}
+    <div class="container-fluid h-100 p-0">
+      <div class="row h-100 g-0">
+        <!-- User List Sidebar , it has (4 Columns) -->
+        <div class="col-3 sidebar p-3 chats">
+          <h5 class="mb-3 text-white">Chats</h5>
+          <div class="contacts">
+            {% for item in user_last_messages %}
+            <a
+              href="{% url 'chat' room_name=item.user.username %}"
+              class="list-group-item list-group-item-action {% if item.user.username == room_name %} active {% endif %}"
+              data-id="{{ room_name }}"
+            >
+{% endblock %}
