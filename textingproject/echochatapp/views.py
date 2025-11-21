@@ -49,9 +49,6 @@ def create_group(request: HttpRequest):
 
     return render(request, "create_group.html", {"form": form})
 
-def test_view(request: HttpRequest) -> HttpResponse:
-    return render(request, 'test.html')
-
 def private_chats_view(request: HttpRequest) -> HttpResponse:
     users = User.objects.all()
     name_form = SearchUserForm()
