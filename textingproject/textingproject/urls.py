@@ -25,5 +25,6 @@ urlpatterns = [
     path('', index, name = 'home'),
     path('chat',thecurrentchatviewer,name='chat'),
     path('test', test_view, name = 'test'),
-    path('private chats', private_chats_view, name = 'private_chats')
+    path('private chats', private_chats_view, name = 'private_chats'),
+    path('chatting page', chatting_page_view, name='chatting_page')
 ]

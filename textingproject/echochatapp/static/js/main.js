@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.textContent = "Light Mode";
     }
 
+    else if (localStorage.getItem("dark") === "false") {
+        toggle.textContent = "Dark Mode";
+    }
+
     toggle.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
 

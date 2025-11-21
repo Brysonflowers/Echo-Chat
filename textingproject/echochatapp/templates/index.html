@@ -12,7 +12,6 @@
             <li><a><button id="theme-toggle">Light Mode</button></a></li>
             <li><a href="{% url 'password_change' %}"><button>Change Password</button></a></li>
             <li><a><form action="{% url 'logout' %}" method="post">{% csrf_token %}<button>Logout</button></form></a></li>
-
         </ul>
     </nav>
     <h2>Hi {{ user.username }}!</h2>

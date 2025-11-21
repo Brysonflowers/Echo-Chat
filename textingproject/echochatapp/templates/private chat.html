@@ -20,8 +20,15 @@
                 <br>
                 <button type="submit">Search</button>
             </form>
+
             {% if user != 'none' %}
-                <p>Found {{user}}</p>
+                {% if user != 'no name form' %}
+                    <p>Found: {{user}}</p>
+                    <form action="{% url 'chatting_page' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Chat</button>
+                    </form>
+                {% endif %}
             {% endif %}
             {% if user == 'none' %}
                 <p>User not found.</p>
