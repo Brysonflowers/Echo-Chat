@@ -1,7 +1,7 @@
 const button = document.getElementById('theme-toggle')
 
 function light_theme(){
-    if (document.body.classList.contains("dark")) {
+    if (document.body.classList == 'dark') {
         document.body.classList.remove("dark");
         document.body.classList.add("light");
     } else {

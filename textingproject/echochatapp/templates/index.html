@@ -6,12 +6,13 @@
     {% if user.is_authenticated %}
     <nav class="nav-bar">
         <ul>
-            <li><a><form action="{% url 'logout' %}" method="post">{% csrf_token %}<button>Logout</button></form></a></li>
-            <li><a href="{% url 'password_change' %}"><button>Password Change</button></a></li>
             <li><a href="{% url 'chat' %}"><button>Chat</button></a></li>
             <li><a href="{% url 'test' %}"><button>Test</button></a></li>
             <li><a href="{% url 'private_chats' %}"><button>Private Chats</button></a></li>
-            <li><a><button id="theme-toggle">Dark Mode</button></a></li>
+            <li><a><button id="theme-toggle">Light Mode</button></a></li>
+            <li><a href="{% url 'password_change' %}"><button>Password Change</button></a></li>
+            <li><a><form action="{% url 'logout' %}" method="post">{% csrf_token %}<button>Logout</button></form></a></li>
+
         </ul>
     </nav>
     <h2>Hi {{ user.username }}!</h2>
