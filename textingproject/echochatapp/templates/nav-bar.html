@@ -1,0 +1,11 @@
+<button id="menu-toggle-btn">Menu</button>
+<nav id="nav-bar" class="hidden">
+    <ul>
+        <li><a><button type="button" onclick="home_page()">Home</button></a></li>
+        <li><a href="{% url 'chat' %}"><button>Chat</button></a></li>
+        <li><a href="{% url 'private_chats' %}"><button>Private Chats</button></a></li>
+        <li><a><button id="theme-toggle">Light Mode</button></a></li>
+        <li><a href="{% url 'password_change' %}"><button>Change Password</button></a></li>
+        <li><a><form action="{% url 'logout' %}" method="post">{% csrf_token %}<button>Logout</button></form></a></li>
+    </ul>
+</nav>

@@ -1,3 +1,6 @@
+const menuToggleButton = document.getElementById('menu-toggle-btn');
+const navbar = document.getElementById('nav-bar');
+
 document.addEventListener('DOMContentLoaded', () => {
     const toggle = document.getElementById("theme-toggle");
 
@@ -24,3 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function home_page() {
     document.location.href = "http://127.0.0.1:8000"
 }
+
+menuToggleButton.addEventListener('click', () => {
+  // Toggle the 'hidden' class to show/hide the navbar
+  navbar.classList.toggle('visisble');
+
+  // Alternative using 'visible' class:
+  // navbar.classList.toggle('visible');
+});
