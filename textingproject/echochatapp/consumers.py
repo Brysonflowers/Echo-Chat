@@ -1,6 +1,6 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
-from channels.db import database_sync_to_async
+from channels.db import sync_to_async
 from .models import ChatMessage
 from django.contrib.auth.models import User
 
@@ -55,6 +55,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
             'username': username
         }))
 
-    @database_sync_to_async
-    def save_message(self, user, message):
-        ChatMessage.objects.create(user=user, message=message)
+    @sync_to_async
+    def get_user(self, username):
+        return User.objects.get(username=username)
+
+    @sync_to_async
+    def get_room(self, room_slug):
+        return Room.objects.get(slug=room_slug)
+
+    @sync_to_async
+    def save_message(self, sender, room, content):
+        Message.objects.create(sender=sender, room=room, content=content)
+
+    #This is so the website that is asynchronous does not freeze and I added group chats and other rooms
