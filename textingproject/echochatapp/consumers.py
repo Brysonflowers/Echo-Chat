@@ -1,6 +1,7 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
-from channels.db import sync_to_async
+from asgiref.sync import sync_to_async
+# from channels.db import sync_to_async
 from .models import ChatMessage
 from django.contrib.auth.models import User
 
