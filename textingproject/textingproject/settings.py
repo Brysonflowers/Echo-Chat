@@ -89,6 +89,12 @@ TEMPLATES = [
 
 ASGI_APPLICATION = 'textingproject.asgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
+#this is for the channels to work I may add more to this
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
