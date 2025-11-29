@@ -24,7 +24,7 @@ MESSAGE_TAGS = {
 LOGIN_REDIRECT_URL = '/'
 LOGIN = 'login'
 LOGOUT = 'logout'
-LOGIN_URL = 'login'
+LOGIN_URL = '/accounts/login/'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
