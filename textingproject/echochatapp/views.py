@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest
 from django.http import HttpResponse
-from .models import Message
+from .models import Message, ChatGroup
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -31,9 +31,11 @@ class SignUpView(CreateView):
 def index(request: HttpRequest) -> HttpResponse:
     return render(request, "index.html")
 
-def thecurrentchatviewer(request: HttpRequest) -> HttpResponse:
-    messages = Message.objects.order_by('timestamp').all()[:10]
-    return render(request, "chattextpage.html", {'messages': messages})
+@login_required
+def thecurrentchatviewer(request: HttpRequest, room_name: str) -> HttpResponse:
+    chat_group = get_object_or_404(ChatGroup, name=room_name)
+    messages = Message.objects.filter(group=chat_group).order_by('timestamp').all()[:10]
+    return render(request, "chattextpage.html", {'room_name': room_name, 'messages': messages})
 
 @login_required
 def create_group(request: HttpRequest):
