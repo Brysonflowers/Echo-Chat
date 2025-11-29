@@ -35,7 +35,8 @@ def index(request: HttpRequest) -> HttpResponse:
 def thecurrentchatviewer(request: HttpRequest, room_name: str) -> HttpResponse:
     chat_group = get_object_or_404(ChatGroup, name=room_name)
     messages = Message.objects.filter(group=chat_group).order_by('timestamp').all()[:10]
-    return render(request, "chattextpage.html", {'room_name': room_name, 'messages': messages})
+    chat_groups = ChatGroup.objects.all()
+    return render(request, "chattextpage.html", {'room_name': room_name, 'messages': messages, 'chat_groups': chat_groups})
 
 @login_required
 def create_group(request: HttpRequest):

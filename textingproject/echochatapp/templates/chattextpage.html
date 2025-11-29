@@ -11,12 +11,14 @@
         <div class="col-3 sidebar p-3 chats">
           <h5 class="mb-3 text-white">Chats</h5>
           <div class="contacts">
-            {% for item in user_last_messages %}
+            {% for group in chat_groups %}
             <a
-              href="{% url 'chat' room_name=item.user.username %}"
-              class="list-group-item list-group-item-action {% if item.user.username == room_name %} active {% endif %}"
-              data-id="{{ room_name }}"
+              href="{% url 'chat' room_name=group.name %}"
+              class="list-group-item list-group-item-action {% if group.name == room_name %} active {% endif %}"
+              data-id="{{ group.name }}"
             >
+              {{ group.name }}
+            </a>
             {% endfor %}
             <textarea id="chat-log" cols="100" rows="20"></textarea><br>
             <input id="chat-message-input" type="text" size="100"><br>
