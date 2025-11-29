@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.http import HttpResponse
-from .models import ChatMessage
+from .models import Message
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -32,7 +32,7 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "index.html")
 
 def thecurrentchatviewer(request: HttpRequest) -> HttpResponse:
-    messages = ChatMessage.objects.order_by('timestamp').all()[:10]
+    messages = Message.objects.order_by('timestamp').all()[:10]
     return render(request, "chattextpage.html", {'messages': messages})
 
 @login_required

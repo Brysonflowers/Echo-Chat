@@ -9,19 +9,11 @@ class ChatGroup(models.Model):
     def __str__(self):
         return self.name
 
-class ChatMessage(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    message = models.TextField()
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f'{self.user.username}: {self.message}'
-
 class Message(models.Model):
-    sender = models.ForeignKey(User, related_name="sent_messages", on_delete=models.CASCADE)
-    receiver = models.ForeignKey(User, related_name="received_messages", on_delete=models.CASCADE)
+    group = models.ForeignKey(ChatGroup, on_delete=models.CASCADE, related_name="messages", null=True, blank=True)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sent_messages")
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.sender} -> {self.receiver}: {self.content[:20]}"
+        return f'{self.sender.username}: {self.content}'
