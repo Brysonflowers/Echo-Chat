@@ -122,33 +122,33 @@ button:hover {
 }
 
 
-.nav-bar ul li :hover {
+#nav-bar ul li :hover {
     background-color: #192709;
 }
 
-.nav-bar ul {
+#nav-bar ul {
     list-style-type: none;
     margin: 0;
     padding: 20px;
     width: 200px;
     background-color: rgb(66, 87, 66);
     height: 100%; 
-    position: fixed; 
-    overflow: auto;
+    position:fixed; 
+    /* overflow: auto; */
     display: flex;
     flex-direction: column;
 }
 
-.nav-bar ul li {
+#nav-bar ul li {
     float: left;
 }
-.nav-bar ul li a {
+#nav-bar ul li a {
     color: rgb(66, 87, 66);
     text-decoration: none;
     display: block;
 } 
 
-.nav-bar ul li button {
+#nav-bar ul li button {
     /* display: block;  */
     margin: auto;
     width: 100%;
@@ -158,10 +158,19 @@ button:hover {
     font-size: 15px;
 }
 
+/* .hidden {
+    display: none;
+} */
+
+.visisble{
+    display: block;
+}
+
 .main-content {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    /* margin-left: 20%; */
 }
 
 .user_groups {
@@ -194,5 +203,6 @@ button:hover {
 .private_chat_heading3_styles {
     justify-self: center;
 }
+
 
 

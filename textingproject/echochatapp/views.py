@@ -8,9 +8,7 @@ from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import *
-import logging
 
-logging.basicConfig(level=logging.INFO)
 # Source - https://stackoverflow.com/a
 # Posted by Brandon Taylor, modified by community. See post 'Timeline' for change history
 # Retrieved 2025-11-19, License - CC BY-SA 4.0
@@ -51,13 +49,10 @@ def create_group(request: HttpRequest):
 
     return render(request, "create_group.html", {"form": form})
 
-def test_view(request: HttpRequest) -> HttpResponse:
-    return render(request, 'test.html')
-
 def private_chats_view(request: HttpRequest) -> HttpResponse:
     users = User.objects.all()
     name_form = SearchUserForm()
-    user = ''
+    user = 'no name form'
     empty_dict = {}
     if request.POST != empty_dict:
         user = request.POST['name']
@@ -67,3 +62,7 @@ def private_chats_view(request: HttpRequest) -> HttpResponse:
             user = 'none'
 
     return render(request, 'private chat.html', {'users': users, 'name_form': name_form, 'user': user})
+
+def chatting_page_view(request: HttpRequest) -> HttpResponse:
+
+    return render(request, 'chatting page.html')

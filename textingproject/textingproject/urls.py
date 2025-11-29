@@ -21,9 +21,9 @@ from echochatapp.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('echochatapp/', include('echochatapp.urls')),
-    path("accounts/", include('django.contrib.auth.urls')),
+    # path("accounts/", include('django.contrib.auth.urls')),
     path('', index, name = 'home'),
-    path('chat',thecurrentchatviewer,name='chat'),
-    path('test', test_view, name = 'test'),
-    path('private chats', private_chats_view, name = 'private_chats')
+    # path('chat',thecurrentchatviewer,name='chat'),
+    # path('private chats', private_chats_view, name = 'private_chats'),
+    # path('chatting page', chatting_page_view, name='chatting_page')
 ]
