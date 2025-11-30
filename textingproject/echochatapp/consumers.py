@@ -77,7 +77,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         return User.objects.get(username=username)
 
     @sync_to_async
-    def save_message(self, sender, group=None, content, receiver=None):
+    def save_message(self, sender, content, group=None, receiver=None):
         Message.objects.create(sender=sender, group=group, content=content, receiver=receiver)
 
     #This is so the website that is asynchronous does not freeze and I added group chats and other rooms
