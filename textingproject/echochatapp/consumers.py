@@ -40,8 +40,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
         username = self.scope["user"].username if self.scope["user"].is_authenticated else "Anonymous"
 
         if self.scope["user"].is_authenticated:
-            group = await sync_to_async(ChatGroup.objects.get)(name=self.room_name)
-            await self.save_message(self.scope["user"], group, message)
+            if self.room_name:
+                group = await sync_to_async(ChatGroup.objects.get)(name=self.room_name)
+                await self.save_message(self.scope["user"], group, message)
+            elif self.private_chat_id:
+                # Assuming private_chat_id is something like "private_1_2" where 1 and 2 are user IDs
+                # We need to extract the other user's ID
+                participants = self.private_chat_id.split('_')
+                other_user_id = int(participants[1]) if int(participants[0]) == self.scope["user"].id else int(participants[0])
+                receiver = await sync_to_async(User.objects.get)(id=other_user_id)
+                await self.save_message(self.scope["user"], None, message, receiver=receiver)
 
         # Send message to room group
         await self.channel_layer.group_send(
@@ -69,7 +77,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         return User.objects.get(username=username)
 
     @sync_to_async
-    def save_message(self, sender, group, content):
-        Message.objects.create(sender=sender, group=group, content=content)
+    def save_message(self, sender, group=None, content, receiver=None):
+        Message.objects.create(sender=sender, group=group, content=content, receiver=receiver)
 
     #This is so the website that is asynchronous does not freeze and I added group chats and other rooms
