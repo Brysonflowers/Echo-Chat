@@ -1,17 +1,14 @@
-.body {
+body {
     font-family: Arial, sans-serif;
-    background-color: #192709;
+    background-color: #eaefe3; /* Light mode background */
     margin: 0;
     padding: 0;
-    color:#4e4c54;
+    color: #4e4c54; /* Light mode text color */
 }
 
-.light {
-    font-family: Arial, sans-serif;
-    background-color: #eaefe3;
-    margin: 0;
-    padding: 0;
-    color:#4e4c54;
+body.dark-mode {
+    background-color: #192709; /* Dark mode background */
+    color: #e0dabf; /* Dark mode text color */
 }
 
 .logo{
@@ -33,11 +30,11 @@ h2 {
 }
 
 .links {
-    background-color: rgb(66, 87, 66);
+    background-color: #f0f0f0; /* Light mode background */
     padding: 20px;
     border-radius: 20px;
     text-align: center;
-    color: lightblue;
+    color: #333; /* Dark text for light background */
     font-size: 130%;
     text-decoration: none;
     display: block;
@@ -45,52 +42,26 @@ h2 {
     margin: 10px 0;
 }
 
-.login-page {
-    width: 30%;
-    margin: 35px auto;
-    padding: 50px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: rgb(66, 87, 66);
+.dark-mode .links {
+    background-color: rgb(66, 87, 66);
     color: lightblue;
 }
 
-.content-login {
-    margin-bottom: 5%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.signup-page {
+.login-page, .signup-page, .password-change {
     max-width: 40%;
     margin: 35px auto;
     padding: 30px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background: rgb(66, 87, 66);
-    color: lightblue;
+    background: #f9f9f9; /* Light mode background */
+    color: #333; /* Dark text for light background */
     display: flex;
     flex-direction: column;
 }
 
-.content-signup {
-    margin-bottom: 5%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.password-change {
-    max-width: 40%;
-    margin: 35px auto;
-    padding: 30px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+.dark-mode .login-page, .dark-mode .signup-page, .dark-mode .password-change {
     background: rgb(66, 87, 66);
     color: lightblue;
-    display: flex;
-    flex-direction: column;
 }
 
 .password-change-cont{
@@ -173,31 +144,18 @@ button:hover {
     /* margin-left: 20%; */
 }
 
-.user_groups {
+.user_groups, .users, .search {
     width: 30%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background: rgb(66, 87, 66);
-    color: lightblue; 
+    background: #f9f9f9; /* Light mode background */
+    color: #333; /* Dark text for light background */
 }
 
-.users {
-    width: 30%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+.dark-mode .user_groups, .dark-mode .users, .dark-mode .search {
     background: rgb(66, 87, 66);
-    color: lightblue; 
-}
-
-.search {
-    width: 30%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: rgb(66, 87, 66);
-    color: lightblue; 
+    color: lightblue;
 }
 
 .private_chat_heading3_styles {
