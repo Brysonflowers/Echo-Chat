@@ -1,41 +1,73 @@
 {% extends 'base.html' %}
-{% load static %}
+
+{% block title %}Private Chats{% endblock %}
 
 {% block content %}
 {% include 'nav-bar.html' %}
-    <h2>Private Chats</h2>
-    <div class="main-content">
-        <div class="user_groups">
-            <h3 class="private_chat_heading3_styles">Users from Group Chats</h3>
-            <p>hello</p>
+    <div class="container-fluid h-100 p-0">
+      <div class="row h-100 g-0">
+        <!-- User List Sidebar -->
+        <div class="col-3 sidebar p-3 users">
+          <h5 class="mb-3 text-white">Users</h5>
+          <div class="contacts">
+            {% for u in users %}
+            <a
+              href="{% url 'private_chat_room' private_chat_id=request.user.id|stringformat:"s"|add:"_"|add:u.id|stringformat:"s" %}"
+              class="list-group-item list-group-item-action"
+            >
+              {{ u.username }}
+            </a>
+            {% endfor %}
+          </div>
         </div>
-        <div class="users">
-            <h3 class="private_chat_heading3_styles">Users</h3>
-            <p>three</p>
+        <!-- Chat Area -->
+        <div class="col-9 chat-area">
+            <h2>Private Chat with {{ other_user.username }}</h2>
+            <textarea id="chat-log" cols="100" rows="20"></textarea><br>
+            <input id="chat-message-input" type="text" size="100"><br>
+            <input id="chat-message-submit" type="button" value="Send">
+            {{ private_chat_id|json_script:"private-chat-id" }}
+            {% for message in messages %}
+                <p>{{ message.sender.username }}: {{ message.content }}</p>
+            {% endfor %}
         </div>
-        <div class="search">
-            <h3 class="private_chat_heading3_styles">Search for User</h3>
-            <form action="{% url 'private_chats' %}" method="post">
-                {% csrf_token %}
-                {{name_form}}
-                <br>
-                <button type="submit">Search</button>
-            </form>
 
-            {% if user != 'none' %}
-                {% if user != 'no name form' %}
-                    <p>Found: {{user}}</p>
-                    <form action="{% url 'chatting_page' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit">Chat</button>
-                    </form>
-                {% endif %}
-            {% endif %}
-            {% if user == 'none' %}
-                <p>User not found.</p>
-            {% endif %}
-        </div>        
-    </div>
-    <br>
-    <button type="button" onclick="home_page()">Home</button>
+<script>
+    const privateChatId = JSON.parse(document.getElementById('private-chat-id').textContent);
+    const chatLog = document.querySelector('#chat-log');
+    const messageInput = document.querySelector('#chat-message-input');
+    const messageSubmit = document.querySelector('#chat-message-submit');
+
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/private_chat/'
+        + privateChatId
+        + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        chatLog.value += (data.username + ': ' + data.message + '\n');
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    messageInput.focus();
+    messageInput.onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            messageSubmit.click();
+        }
+    };
+
+    messageSubmit.onclick = function(e) {
+        const message = messageInput.value;
+        chatSocket.send(JSON.stringify({
+            'message': message
+        }));
+        messageInput.value = '';
+    };
+</script>
 {% endblock %}
