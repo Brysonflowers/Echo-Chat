@@ -1,13 +1,13 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #eaefe3; /* Light mode background */
+    background-color: #DDF0D6; /* Light mode background */
     margin: 0;
     padding: 0;
     color: #4e4c54; /* Light mode text color */
 }
 
 body.dark-mode {
-    background-color: #192709; /* Dark mode background */
+    background-color: #354B35; /* Dark mode background */
     color: #e0dabf; /* Dark mode text color */
 }
 
