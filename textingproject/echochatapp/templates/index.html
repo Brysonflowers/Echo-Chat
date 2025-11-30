@@ -5,16 +5,8 @@
 {% block content %}
     {% if user.is_authenticated %}
     {% include 'nav-bar.html' %}
-    <!-- <nav class="nav-bar">
-        <ul>
-            <li><a href="{% url 'chat' %}"><button>Chat</button></a></li>
-            <li><a href="{% url 'private_chats' %}"><button>Private Chats</button></a></li>
-            <li><a><button id="theme-toggle">Light Mode</button></a></li>
-            <li><a href="{% url 'password_change' %}"><button>Change Password</button></a></li>
-            <li><a><form action="{% url 'logout' %}" method="post">{% csrf_token %}<button>Logout</button></form></a></li>
-        </ul>
-    </nav> -->
     <h2>Hi {{ user.username }}!</h2>
+    
     {% else %}
     <img text-align class="logo" src="static/images/echochatlogo.png" alt="echochatlogo">
     <div class="all-links">
