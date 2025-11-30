@@ -3,7 +3,6 @@
 {% block title %}Private Chats{% endblock %}
 
 {% block content %}
-{% include 'nav-bar.html' %}
     <div class="container-fluid h-100 p-0">
       <div class="row h-100 g-0">
         <!-- User List Sidebar -->
@@ -30,7 +29,6 @@
             {% for message in messages %}
                 <p>{{ message.sender.username }}: {{ message.content }}</p>
             {% endfor %}
-        </div>
 
 <script>
     const privateChatId = JSON.parse(document.getElementById('private-chat-id').textContent);
@@ -70,4 +68,7 @@
         messageInput.value = '';
     };
 </script>
+        </div>
+      </div>
+    </div>
 {% endblock %}
