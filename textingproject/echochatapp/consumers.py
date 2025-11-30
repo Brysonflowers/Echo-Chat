@@ -49,7 +49,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 participants = self.private_chat_id.split('_')
                 other_user_id = int(participants[1]) if int(participants[0]) == self.scope["user"].id else int(participants[0])
                 receiver = await sync_to_async(User.objects.get)(id=other_user_id)
-                await self.save_message(self.scope["user"], None, message, receiver=receiver)
+                await self.save_message(self.scope["user"], message, group=None, receiver=receiver)
 
         # Send message to room group
         await self.channel_layer.group_send(
