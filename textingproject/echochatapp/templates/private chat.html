@@ -11,7 +11,7 @@
           <div class="contacts">
             {% for u in users %}
             <a
-              href="{% url 'private_chat_room' private_chat_id=request.user.id|stringformat:"s"|add:"_"|add:u.id|stringformat:"s" %}"
+              href="/echochatapp/private_chat/{{ request.user.id }}_{{ u.id }}/"
               class="list-group-item list-group-item-action"
             >
               {{ u.username }}
