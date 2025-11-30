@@ -162,6 +162,10 @@ button:hover {
     justify-self: center;
 }
 
+.chat-area {
+    text-align: center; /* Center content within chat area */
+}
+
 #chat-messages {
     height: 400px;
     overflow-y: auto;
