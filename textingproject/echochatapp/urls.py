@@ -1,12 +1,5 @@
-from django.contrib import admin
-from django.urls import path, include
-from echochatapp.views import *
-
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    # path('', index, name = 'home'),
-    path("sign_up/", SignUpView.as_view(), name="signup"),
+SignUpView.as_view(), name="signup"),
+    path("create_group/", SignUpView.as_view(), name="signup"),
     path("create_group/", create_group, name="create_group"),
     path('chat/<str:room_name>/', thecurrentchatviewer, name='chat'),
     path('private chats', private_chats_view, name = 'private_chats'),

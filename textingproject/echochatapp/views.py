@@ -39,6 +39,31 @@ def thecurrentchatviewer(request: HttpRequest, room_name: str) -> HttpResponse:
     return render(request, "chattextpage.html", {'room_name': room_name, 'messages': messages, 'chat_groups': chat_groups})
 
 @login_required
+def private_chat_room_view(request: HttpRequest, private_chat_id: str) -> HttpResponse:
+    from django.db.models import Q
+    from django.http import HttpResponseForbidden
+
+    # private_chat_id will be in format like "user1_user2"
+    user_ids = sorted([int(uid) for uid in private_chat_id.split('_')])
+    user1 = get_object_or_404(User, id=user_ids[0])
+    user2 = get_object_or_404(User, id=user_ids[1])
+
+    # Ensure the current user is one of the participants
+    if request.user not in [user1, user2]:
+        return HttpResponseForbidden("You are not part of this private chat.")
+
+    messages = Message.objects.filter(
+        (Q(sender=user1, receiver=user2) | Q(sender=user2, receiver=user1)),
+        group__isnull=True # Ensure it's a private message
+    ).order_by('timestamp').all()[:10]
+
+    return render(request, "private chat.html", {
+        'private_chat_id': private_chat_id,
+        'messages': messages,
+        'other_user': user1 if request.user == user2 else user2 # For display purposes
+    })
+
+@login_required
 def create_group(request: HttpRequest):
     if request.method == "POST":
         form = CreateGroupForm(request.POST)
@@ -52,8 +77,9 @@ def create_group(request: HttpRequest):
 
     return render(request, "create_group.html", {"form": form})
 
+@login_required
 def private_chats_view(request: HttpRequest) -> HttpResponse:
-    users = User.objects.all()
+    users = User.objects.exclude(id=request.user.id) # Exclude current user
     name_form = SearchUserForm()
     user = 'no name form'
     empty_dict = {}
