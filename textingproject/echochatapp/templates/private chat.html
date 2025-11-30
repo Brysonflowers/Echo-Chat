@@ -27,7 +27,7 @@
             {{ private_chat_id|json_script:"private-chat-id" }}
             <div id="chat-messages">
                 {% for message in messages %}
-                <div class="message">
+                <div class="message{% if message.sender == request.user %} current-user{% endif %}">
                     <strong>{{ message.sender.username }}:</strong> {{ message.content }}
                 </div>
                 {% endfor %}

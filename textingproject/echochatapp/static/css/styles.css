@@ -162,5 +162,25 @@ button:hover {
     justify-self: center;
 }
 
+#chat-messages {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
 
+.message {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    background-color: #f1f0f0; /* Other user's message background */
+    max-width: 70%;
+    clear: both;
+    float: left;
+}
 
+.message.current-user {
+    background-color: #dcf8c6; /* Current user's message background */
+    float: right;
+}
