@@ -26,9 +26,13 @@
             <input id="chat-message-input" type="text" size="100"><br>
             <input id="chat-message-submit" type="button" value="Send">
             {{ private_chat_id|json_script:"private-chat-id" }}
-            {% for message in messages %}
-                <p>{{ message.sender.username }}: {{ message.content }}</p>
-            {% endfor %}
+            <div id="chat-messages">
+                {% for message in messages %}
+                <div class="message">
+                    <strong>{{ message.sender.username }}:</strong> {{ message.content }}
+                </div>
+                {% endfor %}
+            </div>
 
 <script>
     const privateChatId = JSON.parse(document.getElementById('private-chat-id').textContent);
@@ -47,6 +51,7 @@
     chatSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
         chatLog.value += (data.username + ': ' + data.message + '\n');
+        chatLog.scrollTop = chatLog.scrollHeight; // Auto-scroll
     };
 
     chatSocket.onclose = function(e) {
