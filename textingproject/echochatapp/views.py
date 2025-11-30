@@ -9,9 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import *
 
-# Source - https://stackoverflow.com/a
-# Posted by Brandon Taylor, modified by community. See post 'Timeline' for change history
-# Retrieved 2025-11-19, License - CC BY-SA 4.0
+
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
