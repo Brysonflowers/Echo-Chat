@@ -1,66 +1,47 @@
 {% extends 'base.html' %}
 
 {% block title %}Echo Chat - {{ room_name }}{% endblock %}
-<!-- This is there so that tile says echo chat -->
 
 {% block content %}
 {% include 'nav-bar.html' %}
-    <div class="container-fluid h-100 p-0">
-      <div class="row h-100 g-0">
-        <!-- User List Sidebar , it has (4 Columns) -->
-        <div class="col-3 sidebar p-3 chats">
-          <h5 class="mb-3 text-white">Chats</h5>
-          <div class="contacts">
-            {% for group in chat_groups %}
-            <a
-              href="{% url 'chat' room_name=group.name %}"
-              class="list-group-item list-group-item-action {% if group.name == room_name %} active {% endif %}"
-              data-id="{{ group.name }}"
-            >
-              {{ group.name }}
-            </a>
+<div class="container-fluid h-100 p-0">
+  <div class="row h-100 g-0">
+    <!-- User List Sidebar -->
+    <div class="col-3 sidebar p-3 chats">
+      <h5 class="mb-3 text-white">Chats</h5>
+      <div class="contacts">
+        {% for group in chat_groups %}
+        <a
+          href="{% url 'chat' room_name=group.name %}"
+          class="list-group-item list-group-item-action {% if group.name == room_name %} active {% endif %}"
+          data-id="{{ group.name }}"
+        >
+          {{ group.name }}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Chat Area -->
+    <div class="col-9">
+      <div class="chat-container">
+        <div id="chat-log" class="chat-log">
+            {% for message in messages %}
+                <div class="message">
+                    <span class="username">{{ message.sender.username }}:</span>
+                    <span class="text">{{ message.content }}</span>
+                </div>
             {% endfor %}
-            <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-            <input id="chat-message-input" type="text" size="100"><br>
-            <input id="chat-message-submit" type="button" value="Send">
-            {{ room_name|json_script:"room-name" }}
-            <script>
-                const roomName = JSON.parse(document.getElementById('room-name').textContent);
-                const chatLog = document.querySelector('#chat-log');
-                const messageInput = document.querySelector('#chat-message-input');
-                const messageSubmit = document.querySelector('#chat-message-submit');
-            
-                const chatSocket = new WebSocket(
-                    'ws://'
-                    + window.location.host
-                    + '/ws/chat/'
-                    + roomName
-                    + '/'
-                );
-            
-                chatSocket.onmessage = function(e) {
-                    const data = JSON.parse(e.data);
-                    chatLog.value += (data.username + ': ' + data.message + '\n');
-                };
-            
-                chatSocket.onclose = function(e) {
-                    console.error('Chat socket closed unexpectedly');
-                };
-            
-                messageInput.focus();
-                messageInput.onkeyup = function(e) {
-                    if (e.keyCode === 13) {  // enter, return
-                        messageSubmit.click();
-                    }
-                };
-            
-                messageSubmit.onclick = function(e) {
-                    const message = messageInput.value;
-                    chatSocket.send(JSON.stringify({
-                        'message': message
-                    }));
-                    messageInput.value = '';
-                };
-            </script>
-            
+        </div>
+        <div class="chat-input">
+          <input id="chat-message-input" type="text" placeholder="Type your message...">
+          <button id="chat-message-submit">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ room_name|json_script:"room-name" }}
+<script src="{% static 'js/main.js' %}"></script>
 {% endblock %}
