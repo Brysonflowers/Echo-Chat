@@ -6,9 +6,17 @@ from django.contrib.auth.models import User
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.room_name = self.scope['url_route']['kwargs']['room_name']
-        self.room_group_name = f'chat_{self.room_name}'
+        self.room_name = self.scope['url_route']['kwargs'].get('room_name')
+        self.private_chat_id = self.scope['url_route']['kwargs'].get('private_chat_id')
 
+        if self.room_name:
+            self.room_group_name = f'chat_{self.room_name}'
+        elif self.private_chat_id:
+            self.room_group_name = f'private_chat_{self.private_chat_id}'
+        else:
+            await self.close()
+            return
+        
         # Join room group
         await self.channel_layer.group_add(
             self.room_group_name,
