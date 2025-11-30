@@ -1,9 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #DDF0D6; /* Light mode background */
+    background-color: #A5D6A7; /* Default green background */
     margin: 0;
     padding: 0;
-    color: #4e4c54; /* Light mode text color */
+    color: #4e4c54; /* Default text color */
 }
 
 body.dark-mode {
