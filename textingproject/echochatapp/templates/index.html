@@ -5,7 +5,7 @@
 {% block content %}
     {% if user.is_authenticated %}
     {% include 'nav-bar.html' %}
-    <button id="menu-toggle-btn">Menu</button>
+    <!-- <button id="menu-toggle-btn">Menu</button> -->
     <nav id="nav-bar" class="hidden">
         <ul>
             <li><a><button type="button" onclick="home_page()">Home</button></a></li>
@@ -15,7 +15,7 @@
         </ul>
     </nav>
     <h2>Hi {{ user.username }}!</h2>
-    
+
     {% else %}
     <img text-align class="logo" src="static/images/echochatlogo.png" alt="echochatlogo">
     <div class="all-links">
