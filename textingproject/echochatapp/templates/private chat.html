@@ -19,6 +19,48 @@
         {% endfor %}
       </div>
     </div>
+    <h2>Private Chats</h2>
+    <div class="main-content">
+        <div class="user_groups">
+            <h3 class="private_chat_heading3_styles">Chat Requests</h3>
+            <p>No Chat Requests</p>
+        </div>
+        <div class="users">
+            <h3 class="private_chat_heading3_styles">Chats</h3>
+            <p>No Chats</p>
+        </div>
+        <div class="search">
+            <h3 class="private_chat_heading3_styles">Search for User</h3>
+            <form action="{% url 'private_chats' %}" method="post">
+                {% csrf_token %}
+                {{name_form}}
+                <br>
+                <button type="submit">Search</button>
+            </form>
+            <p>{{test.POST}}</p>
+            {% if user != 'none' %}
+                {% if user != 'sent chat request' %}
+                  {% if user != 'no name form' %}
+                    {% if user != 'none with that name' %}
+                      <p>Found: {{user}}</p>
+                      <form action="{% url 'private_chats' %}" method="post">
+                          {% csrf_token %}
+                          <button type="submit">Send Chat Request</button>
+                      </form>
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+                {% if user == 'sent chat request' %}
+                  <p>Sent Chat Request</p>
+                {% endif %}
+            {% endif %}
+            {% if user == 'none with that name' %}
+                <p>User not found.</p>
+            {% endif %}
+        </div>        
+    </div>
+    <br>
+    <button type="button" onclick="home_page()">Home</button>
   {% endif %}
   {% if users == false %}
     <div class="container-fluid h-100 p-0">

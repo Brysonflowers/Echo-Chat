@@ -41,16 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        messageSubmit.onclick = function(e) {
-            const message = messageInput.value;
-            if (message.trim() !== '') {
-                chatSocket.send(JSON.stringify({
-                    'message': message
-                }));
-                messageInput.value = '';
-            }
-        };
-    }
+    messageSubmit.onclick = function(e) {
+        const message = messageInput.value;
+        if (message.trim() !== '') {
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInput.value = '';
+        }
+    };
+}
 
     const privateChatId = JSON.parse(document.getElementById('private-chat-id').textContent);
     const chatLog = document.querySelector('#chat-messages');
