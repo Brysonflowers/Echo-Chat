@@ -27,7 +27,9 @@ class SignUpView(CreateView):
         return form
 
 def index(request: HttpRequest) -> HttpResponse:
-    return render(request, "index.html")
+    users = User.objects.exclude(id=request.user.id) # Exclude current user
+    return render(request, "index.html", {'users': users})
+
 
 @login_required
 def thecurrentchatviewer(request: HttpRequest, room_name: str) -> HttpResponse:
@@ -53,7 +55,7 @@ def private_chat_room_view(request: HttpRequest, private_chat_id: str) -> HttpRe
     messages = Message.objects.filter(
         (Q(sender=user1, receiver=user2) | Q(sender=user2, receiver=user1)),
         group__isnull=True # Ensure it's a private message
-    ).order_by('timestamp').all()[:10]
+    ).order_by('timestamp').all()
 
     return render(request, "private chat.html", {
         'private_chat_id': private_chat_id,
@@ -78,17 +80,19 @@ def create_group(request: HttpRequest):
 @login_required
 def private_chats_view(request: HttpRequest) -> HttpResponse:
     users = User.objects.exclude(id=request.user.id) # Exclude current user
-    name_form = SearchUserForm()
     user = 'no name form'
     empty_dict = {}
     if request.POST != empty_dict:
-        user = request.POST['name']
         try:
-            user = users.get(username = user)
+            user = request.POST['name']
+            try:
+                user = users.get(username = user)
+            except:
+                user = 'none with that name'
         except:
-            user = 'none'
+            user = 'sent chat request'
 
-    return render(request, 'private chat.html', {'users': users, 'name_form': name_form, 'user': user})
+    return render(request, 'private chat.html', {'users': users, 'chat_request': SendChatRequestForm(), 'name_form': SearchUserForm(), 'user': user, 'test': request})
 
 def chatting_page_view(request: HttpRequest) -> HttpResponse:
 

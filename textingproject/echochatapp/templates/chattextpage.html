@@ -5,11 +5,11 @@
 {% block content %}
 {% include 'nav-bar.html' %}
 <div class="container-fluid h-100 p-0">
-  <div class="row h-100 g-0">
-    <!-- User List Sidebar -->
+  <!-- <div class="row h-100 g-0">
+    <-- User List Sidebar -->
     <div class="col-3 sidebar p-3 chats">
       <h5 class="mb-3 text-white">Chats</h5>
-      <div class="contacts">
+       <div class="contacts">
         {% for group in chat_groups %}
         <a
           href="{% url 'chat' room_name=group.name %}"
@@ -19,8 +19,8 @@
           {{ group.name }}
         </a>
         {% endfor %}
-      </div>
-    </div>
+      </div> 
+    </div> 
 
     <!-- Chat Area -->
     <div class="col-9">
