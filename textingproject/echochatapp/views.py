@@ -27,7 +27,9 @@ class SignUpView(CreateView):
         return form
 
 def index(request: HttpRequest) -> HttpResponse:
-    return render(request, "index.html")
+    users = User.objects.exclude(id=request.user.id) # Exclude current user
+    return render(request, "index.html", {'users': users})
+
 
 @login_required
 def thecurrentchatviewer(request: HttpRequest, room_name: str) -> HttpResponse:

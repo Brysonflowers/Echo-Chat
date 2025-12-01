@@ -3,8 +3,10 @@
 {% block title %}Private Chats{% endblock %}
 
 {% block content %}
+{% include 'nav-bar.html' %}
     <div class="container-fluid h-100 p-0">
       <div class="row h-100 g-0">
+        
         <!-- User List Sidebar -->
         <div class="col-3 sidebar p-3 users">
           <h5 class="mb-3 text-white">Users</h5>
@@ -19,6 +21,7 @@
             {% endfor %}
           </div>
         </div>
+
         <!-- Chat Area -->
         <div class="col-9 chat-area">
             <h2>Private Chat with {{ other_user.username }}</h2>

@@ -99,10 +99,20 @@ button:hover {
     cursor: pointer;
 }
 
+#menu-toggle-btn {
+    position: fixed;
+    top: 1%;
+    left: 1.4%;
+    z-index: 10000;  
+    font-size: 20px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
 #nav-bar {
     position: fixed;
     top: 0;
-    left: 0;
+    left: 0; 
     height: 100%;
     transform: translateX(-240px);
     transition: transform 0.3s ease;
@@ -128,6 +138,7 @@ button:hover {
 #nav-bar ul li {
     float: left;
 }
+
 #nav-bar ul li a {
     color: rgb(66, 87, 66);
     text-decoration: none;
@@ -143,25 +154,15 @@ button:hover {
     font-size: 15px;
 }
 
-#menu-toggle-btn {
-    position: fixed;
-    top: 12px;
-    left: 12px;
-    z-index: 10000; 
-    font-size: 20px;
-    padding: 6px 10px;
-    cursor: pointer;
-}
-
 #nav-bar.open {
     transform: translateX(0);
 }
 
-.main-content {
+/* .main-content {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-}
+} */
 
 .user_groups, .users, .search {
     width: 30%;
