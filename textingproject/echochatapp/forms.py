@@ -8,3 +8,6 @@ class CreateGroupForm(forms.ModelForm):
 
 class SearchUserForm(forms.Form):
     name = forms.CharField(max_length=20)
+
+class SendChatRequestForm(forms.Form):
+    chat_request = forms.BooleanField()
