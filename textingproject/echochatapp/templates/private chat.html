@@ -3,22 +3,28 @@
 {% block title %}Private Chats{% endblock %}
 
 {% block content %}
+  {% if users != false %}
+    <!-- User List Sidebar -->
+    <div class="col-3 sidebar p-3 users">
+      <h5 class="mb-3 text-white">Find User</h5>
+      <div class="contacts">
+        {% for u in users %}
+        <a
+          href="/echochatapp/private_chat/{{ request.user.id }}_{{ u.id }}/"
+          class="list-group-item list-group-item-action"
+        >
+          {{ u.username }}
+        </a>
+        <br>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+  {% if users == false %}
     <div class="container-fluid h-100 p-0">
       <div class="row h-100 g-0">
-        <!-- User List Sidebar -->
-        <div class="col-3 sidebar p-3 users">
-          <h5 class="mb-3 text-white">Users</h5>
-          <div class="contacts">
-            {% for u in users %}
-            <a
-              href="/echochatapp/private_chat/{{ request.user.id }}_{{ u.id }}/"
-              class="list-group-item list-group-item-action"
-            >
-              {{ u.username }}
-            </a>
-            {% endfor %}
-          </div>
-        </div>
+        {% include 'nav-bar.html' %}
+        <button type="button" onclick="find_user_page()">Find User</button>
         <!-- Chat Area -->
         <div class="col-9 chat-area">
             <h2>Private Chat with {{ other_user.username }}</h2>
@@ -32,52 +38,8 @@
                 </div>
                 {% endfor %}
             </div>
-
-<script>
-    const privateChatId = JSON.parse(document.getElementById('private-chat-id').textContent);
-    const chatLog = document.querySelector('#chat-messages');
-    const messageInput = document.querySelector('#chat-message-input');
-    const messageSubmit = document.querySelector('#chat-message-submit');
-
-    const ws_url = 'ws://'
-        + window.location.host
-        + '/ws/private_chat/'
-        + privateChatId
-        + '/';
-    console.log("Connecting to WebSocket at:", ws_url);
-    const chatSocket = new WebSocket(ws_url);
-
-    chatSocket.onmessage = function(e) {
-        console.log("Message received:", e.data);
-        const data = JSON.parse(e.data);
-        const messageDiv = document.createElement('div');
-        messageDiv.classList.add('message');
-        messageDiv.innerHTML = `<strong>${data.username}:</strong> ${data.message}`;
-        chatLog.appendChild(messageDiv);
-        chatLog.scrollTop = chatLog.scrollHeight; // Auto-scroll
-    };
-
-    chatSocket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly. Code:', e.code, 'Reason:', e.reason);
-    };
-
-    messageInput.focus();
-    messageInput.onkeyup = function(e) {
-        if (e.keyCode === 13) {  // enter, return
-            messageSubmit.click();
-        }
-    };
-
-    messageSubmit.onclick = function(e) {
-        const message = messageInput.value;
-        console.log("Sending message:", message);
-        chatSocket.send(JSON.stringify({
-            'message': message
-        }));
-        messageInput.value = '';
-    };
-</script>
         </div>
       </div>
     </div>
+  {% endif %}
 {% endblock %}

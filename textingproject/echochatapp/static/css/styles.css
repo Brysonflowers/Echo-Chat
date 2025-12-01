@@ -6,6 +6,13 @@ body {
     color: #4e4c54; /* Default text color */
 }
 
+.body.light {
+    font-family: Arial, sans-serif;
+    background-color: #eaefe3;
+    margin: 0;
+    padding: 0;
+    color:#4e4c54;}
+
 body.dark-mode {
     background-color: #354B35; /* Dark mode background */
     color: #e0dabf; /* Dark mode text color */
@@ -92,6 +99,15 @@ button:hover {
     cursor: pointer;
 }
 
+#nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-240px);
+    transition: transform 0.3s ease;
+    z-index: 9999;
+}
 
 #nav-bar ul li :hover {
     background-color: #192709;
@@ -101,11 +117,10 @@ button:hover {
     list-style-type: none;
     margin: 0;
     padding: 20px;
+    padding-top: 60px;
     width: 200px;
     background-color: rgb(66, 87, 66);
     height: 100%; 
-    position:fixed; 
-    /* overflow: auto; */
     display: flex;
     flex-direction: column;
 }
@@ -120,7 +135,6 @@ button:hover {
 } 
 
 #nav-bar ul li button {
-    /* display: block;  */
     margin: auto;
     width: 100%;
     background-color: rgb(66, 87, 66);
@@ -129,19 +143,24 @@ button:hover {
     font-size: 15px;
 }
 
-/* .hidden {
-    display: none;
-} */
+#menu-toggle-btn {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 10000; 
+    font-size: 20px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
 
-.visisble{
-    display: block;
+#nav-bar.open {
+    transform: translateX(0);
 }
 
 .main-content {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    /* margin-left: 20%; */
 }
 
 .user_groups, .users, .search {

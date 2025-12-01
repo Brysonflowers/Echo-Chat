@@ -4,16 +4,9 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-    <button id="menu-toggle-btn">Menu</button>
-    <nav id="nav-bar" class="hidden">
-        <ul>
-            <li><a><button type="button" onclick="home_page()">Home</button></a></li>
-            <li><a href="{% url 'private_chats' %}"><button>Private Chats</button></a></li>
-            <li><a href="{% url 'password_change' %}"><button>Change Password</button></a></li>
-            <li><a><form action="{% url 'logout' %}" method="post">{% csrf_token %}<button>Logout</button></form></a></li>
-        </ul>
-    </nav>
+    {% include 'nav-bar.html' %}
     <h2>Hi {{ user.username }}!</h2>
+    
     {% else %}
     <img text-align class="logo" src="static/images/echochatlogo.png" alt="echochatlogo">
     <div class="all-links">
