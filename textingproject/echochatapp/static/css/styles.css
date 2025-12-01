@@ -1,9 +1,9 @@
-.body {
+body {
     font-family: Arial, sans-serif;
-    background-color: #192709;
+    background-color: #192709; /* Original dark green background */
     margin: 0;
     padding: 0;
-    color:#4e4c54;
+    color: #4e4c54; /* Default text color */
 }
 
 .body.light {
@@ -11,7 +11,11 @@
     background-color: #eaefe3;
     margin: 0;
     padding: 0;
-    color:#4e4c54;
+    color:#4e4c54;}
+
+body.dark-mode {
+    background-color: #354B35; /* Dark mode background */
+    color: #e0dabf; /* Dark mode text color */
 }
 
 .logo{
@@ -33,11 +37,11 @@ h2 {
 }
 
 .links {
-    background-color: rgb(66, 87, 66);
+    background-color: #f0f0f0; /* Light mode background */
     padding: 20px;
     border-radius: 20px;
     text-align: center;
-    color: lightblue;
+    color: #333; /* Dark text for light background */
     font-size: 130%;
     text-decoration: none;
     display: block;
@@ -45,52 +49,26 @@ h2 {
     margin: 10px 0;
 }
 
-.login-page {
-    width: 30%;
-    margin: 35px auto;
-    padding: 50px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: rgb(66, 87, 66);
+.dark-mode .links {
+    background-color: rgb(66, 87, 66);
     color: lightblue;
 }
 
-.content-login {
-    margin-bottom: 5%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.signup-page {
+.login-page, .signup-page, .password-change {
     max-width: 40%;
     margin: 35px auto;
     padding: 30px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background: rgb(66, 87, 66);
-    color: lightblue;
+    background: #f9f9f9; /* Light mode background */
+    color: #333; /* Dark text for light background */
     display: flex;
     flex-direction: column;
 }
 
-.content-signup {
-    margin-bottom: 5%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.password-change {
-    max-width: 40%;
-    margin: 35px auto;
-    padding: 30px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+.dark-mode .login-page, .dark-mode .signup-page, .dark-mode .password-change {
     background: rgb(66, 87, 66);
     color: lightblue;
-    display: flex;
-    flex-direction: column;
 }
 
 .password-change-cont{
@@ -185,36 +163,107 @@ button:hover {
     justify-content: space-evenly;
 }
 
-.user_groups {
+.user_groups, .users, .search {
     width: 30%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background: rgb(66, 87, 66);
-    color: lightblue; 
+    background: #f9f9f9; /* Light mode background */
+    color: #333; /* Dark text for light background */
 }
 
-.users {
-    width: 30%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+.dark-mode .user_groups, .dark-mode .users, .dark-mode .search {
     background: rgb(66, 87, 66);
-    color: lightblue; 
-}
-
-.search {
-    width: 30%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: rgb(66, 87, 66);
-    color: lightblue; 
+    color: lightblue;
 }
 
 .private_chat_heading3_styles {
     justify-self: center;
 }
 
+.chat-area {
+    text-align: center; /* Center content within chat area */
+}
 
+#chat-messages {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
 
+.message {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    background-color: #f1f0f0; /* Other user's message background */
+    max-width: 70%;
+    clear: both;
+    float: left;
+}
+
+.message.current-user {
+    background-color: #dcf8c6; /* Current user's message background */
+    float: right;
+}
+
+/* Chat Page Styles */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 56px); /* Full height minus nav-bar */
+}
+
+.chat-log {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #f9f9f9;
+}
+
+.dark-mode .chat-log {
+    background-color: #2c3e50;
+}
+
+.chat-log .message {
+    margin-bottom: 1rem;
+}
+
+.chat-log .message .username {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.chat-input {
+    display: flex;
+    padding: 1rem;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+
+.dark-mode .chat-input {
+    background-color: #34495e;
+    border-top: 1px solid #2c3e50;
+}
+
+#chat-message-input {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+}
+
+#chat-message-submit {
+    border-radius: 20px;
+    padding: 0.5rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#chat-message-submit:hover {
+    background-color: #2980b9;
+}

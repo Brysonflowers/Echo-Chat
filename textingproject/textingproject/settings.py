@@ -24,7 +24,8 @@ MESSAGE_TAGS = {
 LOGIN_REDIRECT_URL = '/'
 LOGIN = 'login'
 LOGOUT = 'logout'
-LOGIN_URL = 'login'
+LOGIN_URL = '/accounts/login/'
+#The right urls
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,12 +40,8 @@ SECRET_KEY = 'django-insecure-5@ecm2h%+6!u75f2u-69y-mt8@k7o$0a_p2u$e024a(p_&mzn2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',  # Localhost
-    'localhost',
-    '192.168.1.127',  
-    '*', # WARNING: Use this only for temporary testing on a private network
-]
+ALLOWED_HOSTS = ['192.168.1.26', '127.0.0.1', 'localhost', '0.0.0.0']
+#change the first one to your cumputers ip
 
 
 # Application definition
@@ -92,6 +89,12 @@ TEMPLATES = [
 
 ASGI_APPLICATION = 'textingproject.asgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
+#this is for the channels to work I may add more to this
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -149,4 +152,5 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# The code up top in coded out
