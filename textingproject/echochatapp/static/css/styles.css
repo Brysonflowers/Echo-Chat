@@ -1,21 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #192709; /* Original dark green background */
+    background-color: #192709; 
     margin: 0;
     padding: 0;
-    color: #4e4c54; /* Default text color */
-}
-
-.body.light {
-    font-family: Arial, sans-serif;
-    background-color: #eaefe3;
-    margin: 0;
-    padding: 0;
-    color:#4e4c54;}
-
-body.dark-mode {
-    background-color: #354B35; /* Dark mode background */
-    color: #e0dabf; /* Dark mode text color */
+    color: #4e4c54; 
 }
 
 .logo{
@@ -37,11 +25,11 @@ h2 {
 }
 
 .links {
-    background-color: #f0f0f0; /* Light mode background */
+    background-color: rgb(66, 87, 66);; 
     padding: 20px;
     border-radius: 20px;
     text-align: center;
-    color: #333; /* Dark text for light background */
+    color: #ccc2c2; 
     font-size: 130%;
     text-decoration: none;
     display: block;
@@ -49,54 +37,56 @@ h2 {
     margin: 10px 0;
 }
 
-.dark-mode .links {
-    background-color: rgb(66, 87, 66);
-    color: lightblue;
-}
-
 .login-page, .signup-page, .password-change {
     max-width: 40%;
+    width: 30%;
     margin: 35px auto;
-    padding: 30px;
+    padding: 50px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background: #f9f9f9; /* Light mode background */
-    color: #333; /* Dark text for light background */
-    display: flex;
-    flex-direction: column;
-}
-
-.dark-mode .login-page, .dark-mode .signup-page, .dark-mode .password-change {
     background: rgb(66, 87, 66);
     color: lightblue;
 }
 
-.password-change-cont{
+
+.password-change-cont, .content-signup, .content-login{
     margin-bottom: 5%;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-button {
-    background: #84bcdc;
-    padding: 10px 15px;
-    border: none;
-    color: #4e4c54;
-    border-radius: 5px;
+.login-btn, .signup-btn{
+    background-color: #192709;
 }
 
-.button-style {
-    background: #84bcdc;
+button {
+    background: rgb(66, 87, 66);
     padding: 10px 15px;
     border: none;
-    color: #4e4c54;
+    color: #bbb9ab;
     border-radius: 5px;
 }
 
 button:hover {
-    background: #6ea8d6;
+    background: #192709;
     cursor: pointer;
+}
+
+.button-style {
+    background: rgb(66, 87, 66);
+    padding: 10px 15px;
+    border: none;
+    color: #bbb9ab;
+    border-radius: 5px;
+}
+
+.button-style:hover{
+    background: #192709;
+    padding: 10px 15px;
+    border: none;
+    color: #bbb9ab;
+    border-radius: 5px;
 }
 
 #menu-toggle-btn {
