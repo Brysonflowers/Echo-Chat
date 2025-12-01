@@ -55,7 +55,7 @@ def private_chat_room_view(request: HttpRequest, private_chat_id: str) -> HttpRe
     messages = Message.objects.filter(
         (Q(sender=user1, receiver=user2) | Q(sender=user2, receiver=user1)),
         group__isnull=True # Ensure it's a private message
-    ).order_by('timestamp').all()[:10]
+    ).order_by('timestamp').all()
 
     return render(request, "private chat.html", {
         'private_chat_id': private_chat_id,
