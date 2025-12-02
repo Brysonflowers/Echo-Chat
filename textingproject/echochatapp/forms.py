@@ -32,3 +32,4 @@ class GroupMessageForm(forms.ModelForm):
         widgets = {
             'content': forms.TextInput(attrs={'placeholder': 'Type your message...', 'class': 'form-control'})
         }
+    name = forms.CharField(max_length=20)

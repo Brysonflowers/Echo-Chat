@@ -17,7 +17,7 @@ Requirements to install
 python3 -m venv venv
 source activate
 git clone https://github.com/Brysonflowers/Echo-Chat.git
-[ pip install -r requiremts.txt ]
+[ pip install -r requirements.txt ]
 [ python3 -m pip install -U 'channels[daphne]' ]
 [pip install django]
 cd textingproject
