@@ -3,23 +3,27 @@
 {% block title %}Create Group Chat{% endblock %}
 {% block content %}
   {% include 'nav-bar.html' %}
-    <h1>Create New Group Chat</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Create Chat</button>
-    </form>
-    <h2>Existing Groups</h2>
-    <ul>
-        {% for group in groups %}
-        <li>
-            <a href="{% url 'group_chat' group.id %}">{{ group.name }}</a>
-        </li>
+  <div class="group-chat-area">
+    <div class="create" >
+        <h1>Create New Group Chat</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Create Chat</button>
+        </form>
+    </div>
 
-        {% empty %}
-        <li>No groups yet.</li>
-        {% endfor %}
-    </ul>
+    <div class="existing-groups">
+        <h2>Existing Groups</h2>
+        <ul>
+            {% for group in groups %}
+                <a href="{% url 'group_chat' group.id %}">{{ group.name }}</a>
+            {% empty %}
+            <li>No groups yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    </div>
 {% endblock %}
 
 

@@ -162,7 +162,7 @@ button:hover {
     justify-content: space-evenly;
 } */
 
-.user_groups, .users, .search{
+.user_groups, .users, .search, .create, .existing-groups{
     max-width: 40%;
     width: 30%;
     margin: 35px auto;
@@ -184,15 +184,34 @@ button:hover {
     word-spacing: 20em;
 }
 
+.existing-groups a{
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
 .private_chat_heading3_styles {
     justify-self: center;
 }
 
-.chat-area {
-    text-align: center; /* Center content within chat area */
+.chat-area, .group-chat-area {
+    text-align: center; 
 }
 
 #chat-messages {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#group-chat-messages {
     height: 400px;
     overflow-y: auto;
     border: 1px solid #ccc;
@@ -230,10 +249,6 @@ button:hover {
     overflow-y: auto;
     padding: 1rem;
     background-color: #f9f9f9;
-}
-
-.dark-mode .chat-log {
-    background-color: #2c3e50;
 }
 
 .chat-log .message {
