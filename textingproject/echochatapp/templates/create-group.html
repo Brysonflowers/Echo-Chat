@@ -1,0 +1,26 @@
+<!-- Dani added this new template for creating group chats we can delete it if not needed -->
+{% extends 'base.html' %}
+{% block title %}Create Group Chat{% endblock %}
+{% block content %}
+  {% include 'nav-bar.html' %}
+    <h1>Create New Group Chat</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Chat</button>
+    </form>
+    <h2>Existing Groups</h2>
+    <ul>
+        {% for group in groups %}
+        <li>
+            <a href="{% url 'group_chat' group.id %}">{{ group.name }}</a>
+        </li>
+
+        {% empty %}
+        <li>No groups yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+
+                                                                                                                        
