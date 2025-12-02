@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest
 from django.http import HttpResponse
 from .models import *
@@ -80,19 +80,35 @@ def create_group(request: HttpRequest):
 @login_required
 def private_chats_view(request: HttpRequest) -> HttpResponse:
     users = User.objects.exclude(id=request.user.id) # Exclude current user
-    user = 'no name form'
+    sender_user = User.objects.get(id=request.user.id)
     empty_dict = {}
+    try:
+        extra_info = PrivateChatRequest.objects.filter(sender_name = sender_user)
+        extra_info[0] # extra_info indexed to check if is has info or is an empty query set, will cause an error if no info.
+    except:
+        extra_info = 'No Chat Requests'
+    user = 'no name form'
+    
     if request.POST != empty_dict:
         try:
-            user = request.POST['name']
-            try:
-                user = users.get(username = user)
-            except:
-                user = 'none with that name'
+            request.POST['Cancel Request']
+            specific_user = PrivateChatRequest.objects.get(receiver_name = request.POST['Get User'])
+            specific_user.delete()
+            return redirect(request.path)
         except:
-            user = 'sent chat request'
+            try:
+                user = request.POST['name']
+                try:
+                    user = users.get(username = user)
+                except:
+                    user = 'none with that name'
+            except:
+                user = 'sent chat request'
+                sender_user = User.objects.get(id=request.user.id)
+                PrivateChatRequest.objects.create(sender_name = sender_user, receiver_name = request.POST['user'], chat_request = request.POST['Chat Request'])
+                return redirect(request.path)
 
-    return render(request, 'private chat.html', {'users': users, 'chat_request': SendChatRequestForm(), 'name_form': SearchUserForm(), 'user': user, 'test': request})
+    return render(request, 'private chat.html', {'users': users, 'name_form': SearchUserForm(), 'user': user, 'test': request, 'extra_info': extra_info, 'sender_user': sender_user},)
 
 def chatting_page_view(request: HttpRequest) -> HttpResponse:
 

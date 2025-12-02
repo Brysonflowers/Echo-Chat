@@ -18,3 +18,8 @@ class Message(models.Model):
 
     def __str__(self):
         return f'{self.sender.username}: {self.content}'
+    
+class PrivateChatRequest(models.Model):
+    sender_name = models.CharField(max_length=150)
+    receiver_name = models.CharField(max_length=150)
+    chat_request = models.CharField(max_length=10)

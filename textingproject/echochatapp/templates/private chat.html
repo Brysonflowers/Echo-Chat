@@ -26,7 +26,24 @@
     <div class="main-content">
         <div class="user_groups">
             <h3 class="private_chat_heading3_styles">Chat Requests</h3>
-            <p>No Chat Requests</p>
+            {% if extra_info != 'No Chat Requests' %}
+              {% for info in extra_info %}
+                <p>To: {{info.receiver_name}}</p>
+                <p>Status: {{info.chat_request}}</p>
+                <form action="{% url 'private_chats' %}" method="post">
+                    {% csrf_token %}
+                    <label class="hidden-checkbox">
+                        <input type="checkbox" name="Cancel Request" value="cancel" checked>
+                        <input type="text" name="Get User" value="{{info.receiver_name}}">
+                    </label>
+                    <button type="submit">Cancel</button>
+                </form>              
+                <br>
+              {% endfor %}
+            {% endif %}
+            {% if extra_info == 'No Chat Requests' %}
+                {{extra_info}}
+            {% endif %}
         </div>
 
         <div class="users">
@@ -50,6 +67,10 @@
                       <p>Found: {{user}}</p>
                       <form action="{% url 'private_chats' %}" method="post">
                           {% csrf_token %}
+                          <label class="hidden-checkbox">
+                              <input type="checkbox" name="Chat Request" value="Pending" checked>
+                              <input type="text" name="user" value="{{user}}">
+                          </label>
                           <button type="submit">Send Chat Request</button>
                       </form>
                     {% endif %}
@@ -59,6 +80,7 @@
                   <p>Sent Chat Request</p>
                 {% endif %}
             {% endif %}
+
             {% if user == 'none with that name' %}
                 <p>User not found.</p>
             {% endif %}
