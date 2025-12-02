@@ -1,27 +1,26 @@
 # Echo-Chat
 Texting Website
 
-superuser: jesus
-password: password2564
-
-user: testuser
-
-Notice: When changing the password for testuser, I changed it to these two passwords.
-password: qwartz21
-secondary password: genericpassword2564
-
 Requirements to install
 
-
 [Mac]
-python3 -m venv venv
-source activate
-git clone https://github.com/Brysonflowers/Echo-Chat.git
-[ pip install -r requirements.txt ]
-[ python3 -m pip install -U 'channels[daphne]' ]
-[pip install django]
-cd textingproject
-python3 manage.py runserver
+1. python3 -m venv venv
+2. source activate
+3. git clone https://github.com/Brysonflowers/Echo-Chat.git
+4. pip install -r requirements.txt
+5. python3 -m pip install -U 'channels[daphne]'
+6. pip install django
+7. cd textingproject
+8. python3 manage.py runserver
+
+[Windows]
+1. python -m venv .venv
+2. ./.venv/scripts/activate.ps1
+3. git clone https://github.com/Brysonflowers/Echo-Chat.git
+4. pip install django
+5. cd textingproject
+7. pip install -r requirements.txt
+8. python manage.py runserver
 
 
 ** Hope you like it we worked very hard on it **
