@@ -4,7 +4,6 @@ body {
     margin: 5% 5%;
     padding: 0;
     color: #4e4c54; 
-
 }
 
 .logo{
@@ -17,6 +16,13 @@ h2 {
     color: #e0dabf;
     text-align: center;
 }
+
+h1 {
+    color: #e0dabf;
+    text-align: center;
+    font-size: 250%;
+}
+
 
 .all-links {
     text-align: center;
@@ -278,7 +284,7 @@ button:hover {
     color: #ffffff;
     font-size: 15px;
     padding: 14px;
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
 }
 
 #chat-message-submit {

@@ -4,8 +4,8 @@
 {% block content %}
   {% include 'nav-bar.html' %}
   <div class="group-chat-area">
-    <div class="create" >
-        <h1>Create New Group Chat</h1>
+    <div class="create" style="text-align: left;">
+        <h2>Create New Group Chat</h2>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}

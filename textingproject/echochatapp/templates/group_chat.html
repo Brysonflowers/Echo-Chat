@@ -3,11 +3,11 @@
 {% block content %}
   {% include 'nav-bar.html' %}
   <div class="group-chat-area">
-    <h1>{{ group.name }} Chat</h1>
+    <h2>{{ group.name }} Chat</h2>
 
     <div id="group-chat-messages">
         {% for msg in messages %}
-            <p><strong>{{ msg.sender.username }}:</strong> {{ msg.content }}</p>
+            <p class="message current-user" ><strong>{{ msg.sender.username }}:</strong> {{ msg.content }}</p>
         {% empty %}
             <p>No messages yet.</p>
         {% endfor %}
@@ -15,8 +15,10 @@
 
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Send</button>
+        <div id="chat-message-input">
+            {{ form.content }}
+            <button type="submit">Send</button>
+        </div>
     </form>
     </div>
 {% endblock %}
