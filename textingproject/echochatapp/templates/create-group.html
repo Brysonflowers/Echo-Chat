@@ -15,11 +15,11 @@
 
     <div class="existing-groups">
         <h2>Existing Groups</h2>
-        <ul>
+        <ul class="ul-remove-padding">
             {% for group in groups %}
                 <a href="{% url 'group_chat' group.id %}">{{ group.name }}</a>
             {% empty %}
-            <li>No groups yet.</li>
+            <li class="list-align-center">No groups yet.</li>
             {% endfor %}
         </ul>
     </div>

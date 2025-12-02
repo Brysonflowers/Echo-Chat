@@ -385,3 +385,12 @@ button:hover {
         font-size: 14px;
     }
 }
+
+.list-align-center {
+    display: flex;
+    justify-content: center;
+}
+
+.ul-remove-padding {
+    padding-left: 0px;
+}
