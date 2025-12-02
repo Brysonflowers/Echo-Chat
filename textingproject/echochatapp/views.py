@@ -140,7 +140,7 @@ class CreateGroupChatView(CreateView):
 @login_required
 def group_chat_view(request, group_id):
     group = get_object_or_404(ChatGroup, id=group_id)
-    messages = group.messages.order_by('timestamp')  
+    messages = group.messages.order_by('timestamp') 
 
     if request.method == "POST":
         form = GroupMessageForm(request.POST)

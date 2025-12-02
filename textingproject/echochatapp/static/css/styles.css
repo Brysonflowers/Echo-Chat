@@ -196,6 +196,7 @@ button:hover {
     display: block;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    text-align: center;
 }
 
 .private_chat_heading3_styles {
@@ -368,7 +369,7 @@ button:hover {
 
     #nav-bar {
         position: fixed;
-        height: 100%;
+        height: 100px;
         transform: translateY(-240px);
         transition: transform 0.3s ease;
         z-index: 9999;
