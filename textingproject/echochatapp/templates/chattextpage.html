@@ -1,20 +1,47 @@
 {% extends 'base.html' %}
 
 {% block title %}Echo Chat - {{ room_name }}{% endblock %}
-<!-- This is there so that tile says echo chat -->
 
 {% block content %}
-    <div class="container-fluid h-100 p-0">
-      <div class="row h-100 g-0">
-        <!-- User List Sidebar , it has (4 Columns) -->
-        <div class="col-3 sidebar p-3 chats">
-          <h5 class="mb-3 text-white">Chats</h5>
-          <div class="contacts">
-            {% for item in user_last_messages %}
-            <a
-              href="{% url 'chat' room_name=item.user.username %}"
-              class="list-group-item list-group-item-action {% if item.user.username == room_name %} active {% endif %}"
-              data-id="{{ room_name }}"
-            >
+{% include 'nav-bar.html' %}
+<div class="container-fluid h-100 p-0">
+  <!-- <div class="row h-100 g-0">
+    <-- User List Sidebar -->
+    <div class="col-3 sidebar p-3 chats">
+      <h5 class="mb-3 text-white">Chats</h5>
+       <div class="contacts">
+        {% for group in chat_groups %}
+        <a
+          href="{% url 'chat' room_name=group.name %}"
+          class="list-group-item list-group-item-action {% if group.name == room_name %} active {% endif %}"
+          data-id="{{ group.name }}"
+        >
+          {{ group.name }}
+        </a>
+        {% endfor %}
+      </div> 
+    </div> 
+
+    <!-- Chat Area -->
+    <div class="col-9">
+      <div class="chat-container">
+        <div id="chat-log" class="chat-log">
+            {% for message in messages %}
+                <div class="message">
+                    <span class="username">{{ message.sender.username }}:</span>
+                    <span class="text">{{ message.content }}</span>
+                </div>
             {% endfor %}
+        </div>
+        <div class="chat-input">
+          <input id="chat-message-input" type="text" placeholder="Type your message...">
+          <button id="chat-message-submit">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ room_name|json_script:"room-name" }}
+<script src="{% static 'js/main.js' %}"></script>
 {% endblock %}
