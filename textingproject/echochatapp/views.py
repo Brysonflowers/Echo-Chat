@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest
 from django.http import HttpResponse
-from .models import Message, ChatGroup
+from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -97,3 +97,46 @@ def private_chats_view(request: HttpRequest) -> HttpResponse:
 def chatting_page_view(request: HttpRequest) -> HttpResponse:
 
     return render(request, 'chatting page.html')
+
+# def search_view(request: HttpRequest) -> HttpResponse:
+
+#     return render(request, 'search.html')
+
+# Dani added this new view for creating group chats we can delete it if not needed
+class CreateGroupChatView(CreateView):
+    model = ChatGroup
+    form_class = CreateGroupChatForm
+    template_name = 'create-group.html'
+    success_url = reverse_lazy('create_group_chat')
+
+    def form_valid(self, form):
+        group = form.save(commit=False)
+        group.owner = self.request.user
+        group.save()
+        form.save_m2m()
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['groups'] = ChatGroup.objects.all()
+        return context
+
+@login_required
+def group_chat_view(request, group_id):
+    group = get_object_or_404(ChatGroup, id=group_id)
+    messages = group.messages.order_by('timestamp')  
+
+    if request.method == "POST":
+        form = GroupMessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = request.user
+            message.group = group
+            message.save()
+            return redirect('group_chat', group_id=group.id)
+    else:
+        form = GroupMessageForm()
+
+    return render(request, 'group_chat.html', {'group': group, 'messages': messages, 'form': form})
+
+
