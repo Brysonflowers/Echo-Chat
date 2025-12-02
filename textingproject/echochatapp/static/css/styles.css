@@ -343,8 +343,9 @@ button:hover {
     }
 
     #chat-message-input {
-        width: 80%;
+        width: 50%;
         font-size: 14px;
+        display: inline;
     }
 
     #menu-toggle-btn {
@@ -370,6 +371,7 @@ button:hover {
     #nav-bar {
         position: fixed;
         height: 100px;
+        width: 100%;
         transform: translateY(-240px);
         transition: transform 0.3s ease;
         z-index: 9999;
@@ -387,11 +389,11 @@ button:hover {
     }
 }
 
-.list-align-center {
-    display: flex;
-    justify-content: center;
-}
+    .list-align-center {
+        display: flex;
+        justify-content: center;
+    }
 
-.ul-remove-padding {
-    padding-left: 0px;
-}
+    .ul-remove-padding {
+        padding-left: 0px;
+    }
