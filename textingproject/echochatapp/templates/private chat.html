@@ -3,6 +3,7 @@
 {% block title %}Private Chats{% endblock %}
 
 {% block content %}
+{% include 'nav-bar.html' %}
   {% if users != false %}
     <!-- User List Sidebar -->
     <div class="col-3 sidebar p-3 users">
@@ -19,6 +20,7 @@
         {% endfor %}
       </div>
     </div>
+      
     <h2>Private Chats</h2>
     <div class="main-content">
         <div class="user_groups">
@@ -60,13 +62,13 @@
         </div>        
     </div>
     <br>
-    <button type="button" onclick="home_page()">Home</button>
+    <!-- <button type="button" onclick="home_page()">Home</button> -->
   {% endif %}
   {% if users == false %}
     <div class="container-fluid h-100 p-0">
       <div class="row h-100 g-0">
         {% include 'nav-bar.html' %}
-        <button type="button" onclick="find_user_page()">Find User</button>
+        
         <!-- Chat Area -->
         <div class="col-9 chat-area">
             <h2>Private Chat with {{ other_user.username }}</h2>
@@ -81,6 +83,7 @@
                 {% endfor %}
             </div>
         </div>
+        <button type="button" onclick="find_user_page()">Find User</button>
       </div>
     </div>
   {% endif %}
